@@ -1,30 +1,31 @@
 document.addEventListener("DOMContentLoaded", () =>{
     
-    const squares = document.querySelectorAll(".grid div");
-    const scoreDisplay = document.querySelector(".score");
-    const start = document.querySelector("#start");
-    const gameOver = document.querySelector("#game-over");
-    const highscore = document.querySelector(".highscore");
-    const width = 20;
-    let currentIndex = 0; //first div in the grid
-    let appleIndex = 0; //first div in the grid
-    let currentSnake = [2,1,0];
-    let direction = 1;
-    let score = 0;
-    let speed = 0.95;
-    let intervalTime = 0;
-    let interval = 0;
-    let flash = null;
+    const squares = document.querySelectorAll(".grid div"),
+          scoreDisplay = document.querySelector(".score"),
+          start = document.querySelector("#start"),
+          gameOver = document.querySelector("#game-over"),
+          highscore = document.querySelector(".highscore"),
+          width = 20;
+
+    let currentIndex = 0, //first div in the grid
+        appleIndex = 0, //first div in the grid
+        currentSnake = [2,1,0],
+        direction = 1,
+        score = 0,
+        speed = 0.95,
+        intervalTime = 0,
+        interval = 0,
+        flash = null;
 
     //set the highscore
-    var highestScore = localStorage.getItem("highscoreStore");
+    let highestScore = localStorage.getItem("highscoreStore");
 	if(highestScore === null){
 		highestScore = 0;
     }
     highscore.textContent = highestScore;
 
     //start and reset the game
-    document.body.onkeyup = function(e){
+    document.body.onkeyup = e => {
         if(e.keyCode === 32){
             startGame();
         }
